@@ -2,7 +2,7 @@ module MaterialUi.Radio
 
 open Fable.Core.JsInterop
 open Feliz
-let  materialRadio: obj = importDefault "@mui/material/Radio"
+let materialRadio: obj = importDefault "@mui/material/Radio"
 
 type MaterialRadio =
      static member inline size (s : string) = prop.custom("size", s)

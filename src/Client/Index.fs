@@ -75,10 +75,20 @@ let containerBox (model: Model) (dispatch: Msg -> unit) =
                     control.isExpanded
                     prop.children [
                         MaterialTextField.create [
-                            MaterialTextField.variant "outlined"
+                            MaterialTextField.variant "filled"
                             prop.value model.Input
                             prop.placeholder "What needs to be done?"
                             prop.onChange (fun x -> SetInput x |> dispatch)
+                            MaterialTextField.margin "normal"
+                            MaterialTextField.helperText "Required"
+                        ]
+                        MaterialTextField.create [
+                            MaterialTextField.variant "outlined"
+                            MaterialTextField.error true
+                            MaterialTextField.label "Error"
+                            MaterialTextField.helperText "Invalid Value"
+                            MaterialTextField.defaultValue "Invalid Text"
+                            MaterialTextField.margin "normal"
                         ]
                         MaterialTextField.create [
                             MaterialTextField.variant "standard"
@@ -87,9 +97,26 @@ let containerBox (model: Model) (dispatch: Msg -> unit) =
                             MaterialTextField.label "Number"
                             MaterialTextField.fullWidth true
                             prop.placeholder "0"
-
-
+                            MaterialTextField.margin "normal"
+                            MaterialTextField.inputProps [ "aria-label", "B" ]
                             //prop.onChange (fun x -> SetInput x |> dispatch)
+                        ]
+
+                        MaterialTextField.create [
+                            MaterialTextField.variant "filled"
+                            MaterialTextField.multiline true
+                            MaterialTextField.margin "normal"
+                            MaterialTextField.defaultValue "Multiline"
+
+                        ]
+
+                        MaterialTextField.create [
+                            MaterialTextField.variant "outlined"
+                            MaterialTextField.margin "normal"
+                            MaterialTextField.color "secondary"
+                            MaterialTextField.focused true
+                            MaterialTextField.defaultValue "focused with color"
+
                         ]
                         MaterialRadio.create[
                              MaterialRadio.size "large"
@@ -103,7 +130,7 @@ let containerBox (model: Model) (dispatch: Msg -> unit) =
                              MaterialCheckBox.size "large"
                         ]
                         MaterialCheckBox.create[
-                             MaterialCheckBox.size "large"
+                             MaterialCheckBox.size "small"
                              prop.disabled true
                              prop.defaultChecked true
                         ]
@@ -111,7 +138,7 @@ let containerBox (model: Model) (dispatch: Msg -> unit) =
                 ]
                 Bulma.control.p [
                     MaterialButton.create [
-                        MaterialButton.variant "contained"
+                        MaterialButton.variant "outlined"
                         prop.disabled (Todo.isValid model.Input |> not)
                         prop.onClick (fun _ -> dispatch AddTodo)
                         prop.text "Add"

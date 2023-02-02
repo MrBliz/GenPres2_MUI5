@@ -3,7 +3,7 @@ module MaterialUi.Button
 open Fable.Core.JsInterop
 open Feliz
 
-let  materialButton: obj = importDefault "@mui/material/Button"
+let materialButton: obj = importDefault "@mui/material/Button"
 
 type MaterialButton =
      static member inline variant (s : string) = prop.custom("variant" , s)
