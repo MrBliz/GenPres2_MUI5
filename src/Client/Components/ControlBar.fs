@@ -11,6 +11,7 @@ open MaterialUI.Button
 
 let create =
     MaterialAccordion.create[
+        MaterialAccordion.defaultExpanded true
         prop.children[
             MaterialAccordionSummary.create[
                 MaterialAccordionSummary.expandIcon MaterialExpandMoreIcon.create[]
@@ -23,6 +24,8 @@ let create =
             MaterialAccordionDetails.create[
                 prop.children[
                     MaterialFormGroup.create[
+                        prop.style [style.marginBottom 10]
+                        prop.style []
                         MaterialFormGroup.row true
                         prop.children[
                             ControlBarSelect.create (0, 18, "Year")
@@ -43,6 +46,7 @@ let create =
                                 prop.min 0
                                 prop.value 50
                             ]
+
                         ]
                     ]
                     MaterialButton.create[
@@ -50,9 +54,7 @@ let create =
                         MaterialButton.variant "contained"
                         MaterialButton.fullWidth true
                     ]
-
                 ]
-
             ]
         ]
     ]

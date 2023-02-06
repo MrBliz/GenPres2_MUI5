@@ -10,6 +10,7 @@ let  materialAccordionDetails: obj = importDefault "@mui/material/AccordionDetai
 
 type MaterialAccordion =
 
+    static member inline defaultExpanded(b: bool) = prop.custom("defaultExpanded", b)
     static member inline create (props:  IReactProperty list) =
        Interop.reactApi.createElement(materialAccordion, createObj !!props)
 
@@ -18,9 +19,11 @@ type MaterialAccordionSummary =
     static member inline create (props:  IReactProperty list) =
         Interop.reactApi.createElement(materialAccordionSummary, createObj !!props)
 
-    static member inline expandIcon( e :ReactElement) = prop.custom("expandIcon", e)
+    static member inline expandIcon(e :ReactElement) = prop.custom("expandIcon", e)
+
+    static member inline focusVisibleClassName(s: string) = prop.custom("focusVisibleClassName", s)
 
 type MaterialAccordionDetails =
 
-    static member inline create (props:  IReactProperty list) = 
+    static member inline create (props:  IReactProperty list) =
         Interop.reactApi.createElement(materialAccordionDetails, createObj !!props)

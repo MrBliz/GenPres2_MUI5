@@ -9,6 +9,7 @@ open FSharp.Core
 
 let create (minValue: int, maxValue: int, label: string) =
    MaterialFormControl.create[
+         MaterialFormControl.sx ["m", 1; "minWidth", 120]
          MaterialFormControl.variant "standard"
          MaterialFormControl.margin "normal"
          prop.children[

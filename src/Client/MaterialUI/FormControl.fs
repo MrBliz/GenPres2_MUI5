@@ -16,3 +16,4 @@ type MaterialFormControl =
     static member inline margin (s : string) = prop.custom("margin", s)
 
     static member inline size (s : string) = prop.custom("size", s)
+     static member inline sx (s: (string * obj) list) = prop.custom("sx", createObj s)
