@@ -5,17 +5,36 @@
         <DefineConstants>FABLE_COMPILER</DefineConstants>
     </PropertyGroup>
     <ItemGroup>
+        <Compile Include="MaterialUI\Box.fs" />
+        <Compile Include="MaterialUI\Radio.fs" />
         <Compile Include="MaterialUI\Button.fs" />
         <Compile Include="MaterialUI\CheckBox.fs" />
         <Compile Include="MaterialUI\TextField.fs" />
-        <Compile Include="MaterialUI\Radio.fs" />
-        <Compile Include="MaterialUI/Button.fs" />
+        <Compile Include="MaterialUI\AppBar.fs" />
+        <Compile Include="MaterialUI\Toolbar.fs" />
+        <Compile Include="MaterialUI\IconButton.fs" />
+        <Compile Include="MaterialUI\Icons.fs" />
+        <Compile Include="MaterialUI\Menu.fs" />
+        <Compile Include="MaterialUI\Typography.fs" />
+        <Compile Include="MaterialUI\MenuItem.fs" />
+        <Compile Include="MaterialUI\BottomNavigation.fs" />
+        <Compile Include="MaterialUI\Container.fs" />
+        <Compile Include="MaterialUI\FormGroup.fs" />
+        <Compile Include="MaterialUI\Paper.fs" />
+        <Compile Include="MaterialUI\Accordion.fs" />
+        <Compile Include="MaterialUI\Select.fs" />
+        <Compile Include="MaterialUI\FormControl.fs" />
+        <Compile Include="MaterialUI\InputLabel.fs" />
+        <Compile Include="Components\ControlBarSelect.fs" />
+        <Compile Include="Components\ControlBar.fs" />
+        <Compile Include="Components\BottomNavigation.fs" />
+        <Compile Include="Components\NavBar.fs" />
         <None Include="index.html" />
         <None Include="paket.references" />
-        <Compile Include="MaterialUi.fs" />
         <Compile Include="Index.fs" />
         <Compile Include="App.fs" />
-        
+
+
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Shared\Shared.fsproj" />

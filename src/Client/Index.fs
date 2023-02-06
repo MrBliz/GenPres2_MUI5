@@ -2,13 +2,20 @@ module Index
 
 open Elmish
 open Fable.Remoting.Client
+open Feliz
+open MaterialUI.Container
 open Shared
-open MaterialUi.Button
-open MaterialUi.CheckBox
-open MaterialUi.Radio
-open MaterialUi.TextField
-open Fable.Core.JsInterop
-
+open MaterialUI.Button
+open MaterialUI.TextField
+open MaterialUI.Box
+open MaterialUI.AppBar
+open MaterialUI.Toolbar
+open MaterialUI.IconButton
+open MaterialUI.Icons
+open MaterialUI.Typography
+open MaterialUI.Paper
+open MaterialUI.FormGroup
+open Components
 
 type Model = { Todos: Todo list; Input: string }
 
@@ -45,138 +52,55 @@ let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
 open Feliz
 open Feliz.Bulma
 
-let navBrand =
-    Bulma.navbarBrand.div [
-        Bulma.navbarItem.a [
-            prop.href "https://safe-stack.github.io/"
-            navbarItem.isActive
-            prop.children [
-                Html.img [
-                    prop.src "/favicon.png"
-                    prop.alt "Logo"
-                ]
-            ]
-        ]
-    ]
-
 let containerBox (model: Model) (dispatch: Msg -> unit) =
 
-    Bulma.box [
-        Bulma.content [
-            Html.ol [
-                for todo in model.Todos do
-                    Html.li [ prop.text todo.Description ]
-            ]
-        ]
-        Bulma.field.div [
-            field.isGrouped
-            prop.children [
-                Bulma.control.p [
-                    control.isExpanded
-                    prop.children [
-                        MaterialTextField.create [
-                            MaterialTextField.variant "filled"
-                            prop.value model.Input
-                            prop.placeholder "What needs to be done?"
-                            prop.onChange (fun x -> SetInput x |> dispatch)
-                            MaterialTextField.margin "normal"
-                            MaterialTextField.helperText "Required"
+    MaterialPaper.create [
+       MaterialPaper.elevation 5
+       prop.children[
+           Html.ol [
+              for todo in model.Todos do
+                  Html.li [ prop.text todo.Description ]
+           ]
+           Html.div [
+                prop.children [
+                    MaterialFormGroup.create[
+                        MaterialFormGroup.row true
+                        prop.children [
+                            MaterialTextField.create [
+                                MaterialTextField.variant "filled"
+                                prop.value model.Input
+                                prop.placeholder "What needs to be done?"
+                                prop.onChange (fun x -> SetInput x |> dispatch)
+                                MaterialTextField.margin "normal"
+                                MaterialTextField.helperText "Required"
+                            ]
+                            MaterialButton.create [
+                                    MaterialButton.variant "outlined"
+                                    prop.disabled (Todo.isValid model.Input |> not)
+                                    prop.onClick (fun _ -> dispatch AddTodo)
+                                    prop.text "Add"
+                            ]
                         ]
-                        MaterialTextField.create [
-                            MaterialTextField.variant "outlined"
-                            MaterialTextField.error true
-                            MaterialTextField.label "Error"
-                            MaterialTextField.helperText "Invalid Value"
-                            MaterialTextField.defaultValue "Invalid Text"
-                            MaterialTextField.margin "normal"
-                        ]
-                        MaterialTextField.create [
-                            MaterialTextField.variant "standard"
-                            MaterialTextField.inputType "number"
-                            MaterialTextField.helperText "Required"
-                            MaterialTextField.label "Number"
-                            MaterialTextField.fullWidth true
-                            prop.placeholder "0"
-                            MaterialTextField.margin "normal"
-                            MaterialTextField.inputProps [ "aria-label", "B" ]
-                            //prop.onChange (fun x -> SetInput x |> dispatch)
-                        ]
-
-                        MaterialTextField.create [
-                            MaterialTextField.variant "filled"
-                            MaterialTextField.multiline true
-                            MaterialTextField.margin "normal"
-                            MaterialTextField.defaultValue "Multiline"
-
-                        ]
-
-                        MaterialTextField.create [
-                            MaterialTextField.variant "outlined"
-                            MaterialTextField.margin "normal"
-                            MaterialTextField.color "secondary"
-                            MaterialTextField.focused true
-                            MaterialTextField.defaultValue "focused with color"
-
-                        ]
-                        MaterialRadio.create[
-                             MaterialRadio.size "large"
-                             MaterialRadio.inputProps [ "aria-label", "B" ]
-                        ]
-                        MaterialCheckBox.create[
-                             MaterialCheckBox.size "large"
-                             MaterialCheckBox.checked true
-                        ]
-                        MaterialCheckBox.create[
-                             MaterialCheckBox.size "large"
-                        ]
-                        MaterialCheckBox.create[
-                             MaterialCheckBox.size "small"
-                             prop.disabled true
-                             prop.defaultChecked true
-                        ]
-                    ]
-                ]
-                Bulma.control.p [
-                    MaterialButton.create [
-                        MaterialButton.variant "outlined"
-                        prop.disabled (Todo.isValid model.Input |> not)
-                        prop.onClick (fun _ -> dispatch AddTodo)
-                        prop.text "Add"
-                    ]
-                ]
-            ]
-        ]
+                   ]
+               ]
+           ]
+       ]
     ]
 
+
 let view (model: Model) (dispatch: Msg -> unit) =
-    Bulma.hero [
-        hero.isFullHeight
-        color.isPrimary
-        prop.style [
-            style.backgroundSize "cover"
-            style.backgroundImageUrl "https://unsplash.it/1200/900?random"
-            style.backgroundPosition "no-repeat center center fixed"
-        ]
+    MaterialContainer.create [
+        MaterialContainer.maxWidth false
+        MaterialContainer.disableGutters true
         prop.children [
-            Bulma.heroHead [
-                Bulma.navbar [
-                    Bulma.container [ navBrand ]
-                ]
-            ]
-            Bulma.heroBody [
-                Bulma.container [
-                    Bulma.column [
-                        column.is6
-                        column.isOffset3
-                        prop.children [
-                            Bulma.title [
-                                text.hasTextCentered
-                                prop.text "SAFEMATERIAL"
-                            ]
-                            containerBox model dispatch
-                        ]
+            NavBar.create
+            ControlBar.create
+            MaterialContainer.create [
+                    MaterialContainer.maxWidth "sm"
+                    prop.children [
+                        //containerBox model dispatch
                     ]
                 ]
-            ]
+            BottomNavigation.create
         ]
     ]

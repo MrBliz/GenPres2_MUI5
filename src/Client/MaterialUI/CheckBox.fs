@@ -1,4 +1,4 @@
-module MaterialUi.CheckBox
+module MaterialUI.CheckBox
 
 open Fable.Core.JsInterop
 open Feliz

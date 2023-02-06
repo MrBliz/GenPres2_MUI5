@@ -1,4 +1,4 @@
-module MaterialUi.TextField
+module MaterialUI.TextField
 
 open Fable.Core.JsInterop
 open Feliz
@@ -16,7 +16,7 @@ type MaterialTextField =
      static member inline fullWidth(b: bool) = prop.custom("fullWidth", b)
      static member inline error(b: bool) = prop.custom("error", b)
      static member inline multiline(b: bool) = prop.custom("multiline", b)
-     static member inline focused(b: bool) = Interop.mkAttr "focused"
+     static member inline focused(b: bool) = Interop.mkAttr "focused" b
      //TODO: Input should be an integer
      static member inline maxRows (s: (string * obj) list) = prop.custom("maxRows", createObj s)
      static member inline inputProps (s: (string * obj) list) = prop.custom("inputProps", createObj s)
